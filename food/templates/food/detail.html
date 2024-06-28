@@ -1,0 +1,28 @@
+{% extends 'food/base.html' %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{item.item_name}}</title>
+</head>
+<body>
+    {% block body %}
+        <div class="row">
+            <div class="col-md-3 offset-md-2">
+                <img src="{{object.item_img}}" width="300px">
+            </div>
+            <div class="col-md-6">
+                {% comment %} for calss based view all the "item" changed to "object" as we do not want to pass the context in the view in class based view {% endcomment %}
+                {% comment %} If we wish to used function based view again then we need to again change "object" to "item"{% endcomment %}
+                <h1>{{object.item_name}}</h1>
+                <h2>{{object.item_desc}}</h2>
+                <h3>₹{{object.item_price}}</h3>
+                <a style="margin:20px 40px;" href="{% url 'food:update_item' object.id %}" class="btn btn-success">Update</a>
+                <a href="{% url 'food:delete_item' object.id %}" class="btn btn-danger">Delete</a>
+            </div>
+        </div>
+    {% endblock %}
+</body>
+</html>

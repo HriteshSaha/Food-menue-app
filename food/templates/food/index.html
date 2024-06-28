@@ -1,0 +1,45 @@
+{% extends 'food/base.html' %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% block body %}
+        {% for item in item_lst %}
+        <br>
+        <div class="row">
+            <div class="col-md-3 offset-md-2">
+                <img class="card" src="{{item.item_img}}" width="250px">
+            </div>
+            <div class="col-md-4">
+                <h2>{{item.item_name}}</h2>
+                <p>{{item.item_desc}}</p>
+                <h5>₹{{item.item_price}}</h5>
+                <h6>{{item.user_name}}</h6>
+
+            </div>
+            <div class="col-md-2">
+                <a href="{% url 'food:details' item.id %}" class="btn btn-success">Details</a>
+            </div>
+        </div>
+    
+        {% endfor %}
+    {% endblock %}
+
+
+    <!-- old code (kept for understanding purposes)------------------
+        {% for item in item_lst %}
+        <ul>
+            <li> -->
+                <!-- <a href="/food/{{ item.id }}">{{item.item_name}}</a>
+                Removing hardcoded url using name given in urls.py -->
+                <!-- <a href="{% url 'food:details' item.id %}">{{item.item_name}}</a>
+            </li>
+        </ul>
+        {% endfor %} -->
+</body>
+</html>
